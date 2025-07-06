@@ -18,14 +18,13 @@ class PurchaseService(
         val movie = movieRepository.findById(payload.movieId)
             .orElseThrow { Exception("Movie not found") }
 
-        //validação:
-        //try catch
-        //if tiver dinheiro, fazer o que sta a baixo
-        //else menssagem de erro
+        if (user.walletAmount > movie.price) {
+            user.moviesBought?.add(movie)
+            user.walletAmount -= movie.price
 
-        user.moviesBought?.add(movie)
-        user.walletAmount -= movie.price
-
-        userRepository.save(user)
+            userRepository.save(user)
+        } else {
+            throw Exception("Insufficient balance.")
+        }
     }
 }
