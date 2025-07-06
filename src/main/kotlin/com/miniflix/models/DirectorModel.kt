@@ -1,5 +1,6 @@
 package com.miniflix.models
 
+import com.fasterxml.jackson.annotation.JsonProperty
 import jakarta.persistence.Entity
 import jakarta.persistence.Id
 import jakarta.persistence.OneToMany
@@ -15,6 +16,7 @@ data class DirectorModel(
 
     val name: String,
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @OneToMany(mappedBy = "director")
     val movies: List<MovieModel>? = null,
 )
