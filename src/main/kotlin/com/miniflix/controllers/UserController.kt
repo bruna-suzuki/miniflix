@@ -29,7 +29,8 @@ class UserController(
     }
 
     @PostMapping("/addMoney")
-    fun addMoney(@RequestBody payload: AddMoneyDto) {
-        userService.addMoney(payload)
+    fun addMoney(@RequestBody payload: AddMoneyDto): ResponseEntity<String> {
+        val userName = userService.addMoney(payload)
+        return ResponseEntity.status(HttpStatus.OK).body("${payload.amount} foi adicionado á ${userName}")
     }
 }

@@ -28,11 +28,13 @@ class UserService(
         purchaseService.purchaseMovie(payload)
     }
 
-    fun addMoney(payload: AddMoneyDto) {
+    fun addMoney(payload: AddMoneyDto): String {
         val user = userRepository.findById(payload.userId)
             .orElseThrow { Exception("User not found") }
 
         user.walletAmount += payload.amount
         userRepository.save(user)
+
+        return user.fullName
     }
 }
