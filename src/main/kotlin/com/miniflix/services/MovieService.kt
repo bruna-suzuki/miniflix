@@ -6,6 +6,7 @@ import com.miniflix.models.ReviewModel
 import com.miniflix.repositories.DirectorRepository
 import com.miniflix.repositories.MovieRepository
 import org.springframework.stereotype.Service
+import java.util.UUID
 
 @Service
 class MovieService(
@@ -34,5 +35,13 @@ class MovieService(
         newMovie.review?.add(newReview)
         val savedMovie = movieRepository.save(newMovie)
         return savedMovie
+    }
+
+    fun deleteMovie(id: UUID) {
+        movieRepository.deleteById(id)
+    }
+
+    fun getAllMovie(): List<MovieModel>{
+        return movieRepository.findAll()
     }
 }
