@@ -32,7 +32,7 @@ class DirectorController(private val directorService: DirectorService) {
 
     @GetMapping
     fun getAllDirectors(): ResponseEntity<List<DirectorModel>> {
-        val directors = directorService.getAllDDirector()
+        val directors = directorService.getAllDirector()
         return ResponseEntity.status(HttpStatus.OK).body(directors)
     }
 }
