@@ -6,6 +6,7 @@ import com.miniflix.dtos.UserDto
 import com.miniflix.models.UserModel
 import com.miniflix.repositories.UserRepository
 import org.springframework.stereotype.Service
+import java.util.UUID
 
 @Service
 class UserService(
@@ -36,5 +37,13 @@ class UserService(
         userRepository.save(user)
 
         return user.fullName
+    }
+
+    fun deleteUser(id: UUID) {
+        return userRepository.deleteById(id)
+    }
+
+    fun getAllUsers(): List<UserModel> {
+        return userRepository.findAll()
     }
 }
